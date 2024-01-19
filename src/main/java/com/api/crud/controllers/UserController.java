@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PutMapping(path = "/{id}")
-    public Optional<User> updateUserById(@RequestBody User request,@PathVariable("id") Long id){
+    public User updateUserById(@RequestBody User request,@PathVariable("id") Long id){
         return this.userService.updateById(request, id);
     }
 

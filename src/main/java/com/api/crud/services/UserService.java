@@ -26,16 +26,16 @@ public class UserService {
         return iUserRepository.save(user);
     }
 
-    public Optional<User> updateById(User request, Long id){
-        Optional<User> userOptional = iUserRepository.findById(id);
+    public User updateById(User request, Long id){
+        User user = iUserRepository.findById(id).get();
 
-        userOptional.ifPresent(user -> {
-            user.setFirstName(request.getFirstName());
-            user.setLastName(request.getLastName());
-            user.setEmail(request.getEmail());
-        });
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setEmail(request.getEmail());
 
-        return userOptional;
+        iUserRepository.save(user);
+
+        return user;
     }
 
     public Boolean deleteUser(Long id){
